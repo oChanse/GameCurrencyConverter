@@ -351,7 +351,7 @@ function renderContent() {
       { val: 'epico', txt: 'Épico (Hardcore)' },
       { val: 'lendario', txt: 'Lendário (Whale)' },
       { val: 'unico', txt: 'Único (Exclusivo)' },
-      { val: 'Moeda Rara', txt: 'Utilizado pra calcular moedas raras.' }
+      { val: 'Moeda Rara', txt: 'Moeda Rara (V-Buck, RP, etc..)' }
     ]
   ));
 
