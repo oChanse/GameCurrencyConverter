@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Currency Converter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="window">
+    <div class="titlebar">
+      <div class="dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <div class="brand">Law was here 🐈‍</div>
+      <div style="width: 50px;"></div> </div>
+
+    <div class="workspace">
+      
+      <aside class="sidebar collapsed" id="sidebar">
+        <div class="sidebar-header">
+           <button id="toggleSidebar" title="Expandir/Encolher">☰</button>
+        </div>
+        
+        <button class="scroll-btn-vert hidden" id="scrollGamesUp">▲</button>
+
+        <div class="game-list-wrapper" id="gameListWrapper">
+           <div class="game-list" id="gameList">
+              </div>
+        </div>
+
+        <button class="scroll-btn-vert hidden" id="scrollGamesDown">▼</button>
+
+        <div class="add-game-btn" id="addGameBtn" title="Novo Jogo">
+           +
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <div class="tabs-container">
+          <button class="scroll-btn-horz hidden" id="scrollTabsLeft">◀</button>
+          
+          <div class="tabs-wrapper" id="tabsWrapper">
+            <div class="tabs" id="tabs">
+              </div>
+          </div>
+
+          <button class="scroll-btn-horz hidden" id="scrollTabsRight">▶</button>
+        </div>
+
+        <div class="content" id="content">
+          </div>
+      </main>
+
+      <aside class="tools-sidebar">
+        <div class="tool-group">
+          <button id="saveAll" class="tool-btn" title="Salvar (Shift+S)">
+            💾
+            <span>Save</span>
+          </button>
+          <button id="loadAll" class="tool-btn" title="Carregar">
+            📂
+            <span>Load</span>
+          </button>
+          <input type="file" id="loadFile" accept=".json" hidden />
+        </div>
+      </aside>
+
+    </div>
+
+    <footer>
+      Archinemy - Economy Architect - 0.4 - Games Update
+    </footer>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
