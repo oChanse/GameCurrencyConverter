@@ -1,32 +1,22 @@
-// ============================================================================
-// 🧠 DEEP INTELLIGENCE CORE V2 - MONETIZATION ORACLE
-// ============================================================================
-
-/**
- * CONSTANTES MACROECONÔMICAS & COMPORTAMENTAIS
- * Dados baseados em estátisticas reais do Roblox e Economia Global (2024/25)
- */
 const MARKET_DATA = {
-  // Taxas de Câmbio e Valor
-  ROBUX_BUY_RATE: 0.0125,       // Custo para o player comprar 1 R$ (USD)
-  ROBUX_DEVEX_RATE: 0.0035,     // Quanto cai na conta do Dev (USD)
-  PLATFORM_TAX: 0.30,           // Taxa do Roblox (30%)
+  ROBUX_BUY_RATE: 0.0125,     
+  ROBUX_DEVEX_RATE: 0.0035, 
+  PLATFORM_TAX: 0.30, 
   
-  // Referências Globais (Purchasing Power Parity Simplificado)
-  MIN_WAGE_HOURLY_USA: 7.25,    // USD
-  MIN_WAGE_HOURLY_BR: 1.20,     // USD (Aprox R$ 6.00/h)
-  MIN_WAGE_HOURLY_PH: 0.90,     // USD (Filipinas - grande base de players)
+  MIN_WAGE_HOURLY_USA: 7.25, 
+  MIN_WAGE_HOURLY_BR: 1.20,
+  MIN_WAGE_HOURLY_PH: 0.90,
   
-  // Benchmarks de Jogos
-  AVG_ROBLOX_CONVERSION: 0.02,  // 2% dos free players compram algo
-  WHALE_THRESHOLD: 2500,        // Acima disso, é território de "Whale"
-  IMPULSE_BUY_LIMIT: 400,       // Até 400 R$, crianças compram sem pedir aos pais
+
+  AVG_ROBLOX_CONVERSION: 0.02,
+  WHALE_THRESHOLD: 2500, 
+  IMPULSE_BUY_LIMIT: 400,
   
   // Psicologia Visual
-  HEAVY_DIGITS: ['0', '6', '8', '9'], // Parecem "pesados/cheios"
-  LIGHT_DIGITS: ['1', '7'],           // Parecem "leves/baratos"
-  SHARP_DIGITS: ['3', '4', '7'],      // Parecem "agressivos"
-  ROUND_DIGITS: ['0', '2', '6', '8', '9'] // Parecem "amigáveis"
+  HEAVY_DIGITS: ['0', '6', '8', '9'],
+  LIGHT_DIGITS: ['1', '7'],
+  SHARP_DIGITS: ['3', '4', '7'],  
+  ROUND_DIGITS: ['0', '2', '6', '8', '9']
 };
 
 const PRICE_BRACKETS = {
@@ -37,16 +27,11 @@ const PRICE_BRACKETS = {
   unico:    { min: 2500, max: 99999, ideal: 4999, label: 'Ecosystem Shaper',     color: '#ff0000' }
 };
 
-// ============================================================================
-// 🛠️ ANALYZER ENGINES (MODULAR)
-// ============================================================================
 
-// --- ENGINE 1: ANÁLISE VISUAL E FONÉTICA (Neuro-marketing) ---
 function analyzeNeuroPsychology(price) {
   const str = price.toString();
   const insights = [];
 
-  // 1.1 Análise de Peso Visual
   let visualWeight = 0;
   str.split('').forEach(char => {
     if (MARKET_DATA.HEAVY_DIGITS.includes(char)) visualWeight += 2;
@@ -72,7 +57,6 @@ function analyzeNeuroPsychology(price) {
     });
   }
 
-  // 1.2 A Barreira da Vírgula (Mental)
   if (price >= 1000 && price < 1200) {
     insights.push({
       title: '🚧 A Barreira dos 4 Dígitos',
@@ -83,9 +67,6 @@ function analyzeNeuroPsychology(price) {
     });
   }
 
-  // 1.3 Fluência Silábica (Teoria: Menos sílabas = parece mais barato)
-  // Ex: "Five Hundred" (3 sílabas) vs "Four Hundred Ninety Nine" (6 sílabas)
-  // Nota: Aproximação baseada em comprimento, já que não temos fonética PT/EN completa
   if (str.length >= 3 && !str.endsWith('00')) {
      insights.push({
       title: '🗣️ Custo Fonético',
@@ -98,14 +79,12 @@ function analyzeNeuroPsychology(price) {
   return insights;
 }
 
-// --- ENGINE 2: ANÁLISE MACROECONÔMICA (Global & Dev) ---
 function analyzeGlobalEconomy(price) {
   const insights = [];
   const usdCost = price * MARKET_DATA.ROBUX_BUY_RATE;
   
-  // 2.1 O Índice Big Mac & Realidade BR
-  const costInBRL = usdCost * 6.0; // Conversão direta aprox
-  const hoursWorkBR = costInBRL / 6.0; // Baseado no salário mínimo hora BR
+  const costInBRL = usdCost * 6.0;
+  const hoursWorkBR = costInBRL / 6.0;
   
   if (hoursWorkBR > 4) {
     insights.push({
@@ -116,7 +95,6 @@ function analyzeGlobalEconomy(price) {
     });
   }
 
-  // 2.2 Previsão de Receita (DevEx)
   const netRobux = Math.floor(price * 0.7);
   const devEarningsUSD = netRobux * MARKET_DATA.ROBUX_DEVEX_RATE;
   
@@ -139,7 +117,6 @@ function analyzeGlobalEconomy(price) {
   return insights;
 }
 
-// --- ENGINE 3: GAME DESIGN & RETENÇÃO ---
 function analyzeGameLoop(price, gameCoins, grindRate) {
   const insights = [];
   
@@ -148,9 +125,7 @@ function analyzeGameLoop(price, gameCoins, grindRate) {
   const grindMinutes = gameCoins / grindRate;
   const grindHours = grindMinutes / 60;
   
-  // 3.1 Custo de Oportunidade (Time vs Money)
   const usdCost = price * MARKET_DATA.ROBUX_BUY_RATE;
-  // Quanto vale a hora do player nesse jogo?
   const impliedHourlyWage = usdCost / (grindHours || 0.1);
 
   if (impliedHourlyWage > 10) {
@@ -170,7 +145,6 @@ function analyzeGameLoop(price, gameCoins, grindRate) {
     });
   }
 
-  // 3.2 Impacto na Retenção
   if (grindHours > 50) {
     insights.push({
       title: '📉 Risco de Churn (Desistência)',
@@ -183,14 +157,11 @@ function analyzeGameLoop(price, gameCoins, grindRate) {
   return insights;
 }
 
-// --- ENGINE 4: MATEMÁTICA DE VENDAS & ESTATÍSTICA ---
 function analyzeProbability(price, rarity) {
   const insights = [];
   
-  // Fórmula Heurística de Decaimento de Conversão
-  // Taxa Base (2%) * Fator Preço * Fator Raridade
   let baseConversion = 2.5; // %
-  const priceFactor = Math.max(0.1, 100 / (price + 50)); // Cai conforme preço sobe
+  const priceFactor = Math.max(0.1, 100 / (price + 50));
   const predictedConversion = (baseConversion * priceFactor).toFixed(2);
 
   if (price > MARKET_DATA.WHALE_THRESHOLD) {
@@ -209,8 +180,6 @@ function analyzeProbability(price, rarity) {
     });
   }
 
-  // Verifica "Dead Zones" (Zonas Mortas de Preço)
-  // Preços entre 200 e 399 muitas vezes vendem menos que 400 (porque 400 parece premium, 250 parece "nem lá nem cá")
   if (price > 200 && price < 350) {
     insights.push({
       title: '☠️ A Zona Morta (Dead Zone)',
@@ -224,9 +193,6 @@ function analyzeProbability(price, rarity) {
   return insights;
 }
 
-// ============================================================================
-// 🚀 MAIN EXPORT FUNCTION
-// ============================================================================
 
 export function generateDeepIntelligence({
   robux,
@@ -246,7 +212,6 @@ export function generateDeepIntelligence({
   const current = Math.ceil(robux);
   const range = PRICE_BRACKETS[rarity] || PRICE_BRACKETS.comum;
   
-  // Coletando insights de todas as engines
   let allCards = [
     ...analyzeNeuroPsychology(current),
     ...analyzeGlobalEconomy(current),
@@ -254,11 +219,8 @@ export function generateDeepIntelligence({
     ...analyzeProbability(current, rarity)
   ];
 
-  // --- CHECAGENS BÁSICAS DE INTEGRIDADE (Fallbacks) ---
-  
-  // Checagem de Range
   if (current < range.min) {
-    allCards.unshift({ // Coloca no topo
+    allCards.unshift({
       title: '📉 Erro Crítico de Raridade',
       level: 'danger',
       text: `Preço (${current}) destrói a percepção de valor da categoria ${rarity}. Jogadores assumirão que é bug ou scam.`,
@@ -268,7 +230,6 @@ export function generateDeepIntelligence({
     });
   }
 
-  // Checagem de Final 9 (Clássico)
   if (!current.toString().endsWith('9') && !current.toString().endsWith('0')) {
     const charmPrice = Math.floor(current / 10) * 10 + 9;
     allCards.push({
@@ -281,8 +242,6 @@ export function generateDeepIntelligence({
     });
   }
 
-  // --- ORDENAÇÃO INTELIGENTE ---
-  // A UI deve mostrar primeiro o que é CRÍTICO (Danger), depois Warning, depois Good/Info
   const severityScore = { 'danger': 0, 'warning': 1, 'good': 2, 'info': 3, 'neutral': 4 };
   
   return allCards.sort((a, b) => severityScore[a.level] - severityScore[b.level]);
